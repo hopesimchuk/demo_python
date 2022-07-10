@@ -53,6 +53,7 @@ def main():
         else:
             print("Такого слова нет, введите другой ответ")
         i += 1
+
         statistic(player)
 
 
