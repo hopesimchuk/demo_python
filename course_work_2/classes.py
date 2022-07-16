@@ -4,15 +4,16 @@ class BasicWord():
     который проверяет введенное слово в списке допустимых подслов,
     который ведет подчсет количества слов
     """
-    def __init__(self, word_original: str, word_list: list) -> None:
-        self.word_original = word_original
-        self.word_list = word_list
 
-    def check_user_input(self, usr_word: str) -> bool:
-        return usr_word in self.word_list
+    def __init__(self, raw_word: str, lst_word: list) -> None:
+        self.raw_word = raw_word
+        self.lst_word = lst_word
 
-    def word_count(self) -> int:
-        return len(self.word_list)
+    def check_usr_input(self, usr_word: str) -> bool:
+        return usr_word in self.lst_word
+
+    def lst_word_cnt(self) -> int:
+        return len(self.lst_word)
 
 
 class Player():
@@ -23,17 +24,16 @@ class Player():
     который проверяет слова на уникальнось
     """
 
-    def __init__(self, user_name: str) -> None:
-        self.user_name = user_name
+    def __init__(self, name: str) -> None:
+        self.name = name
+        self.lst_word = []
 
-    def word_count(self) -> int:
-        return len(self.word_list)
+    def lst_word_cnt(self) -> int:
+        return len(self.lst_word)
 
-    def list_append(self, word_append: str) -> bool:
-        self.word_append = word_append
+    def list_append(self, word: str) -> None:
+        if not self.word_already_used(word):
+            self.lst_word.append(word)
 
-        if not self.word_unique(word_append):
-            self.word_list.append(word_append)
-
-    def word_unique(self, word_append: str) -> int:
-        return word_unique in self.word_list
+    def word_already_used(self, word: str) -> bool:
+        return word in self.lst_word

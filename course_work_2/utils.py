@@ -8,20 +8,22 @@ import classes
 """
 Добавляем сссылку на файл со словами для игры
 """
-URL_DN = r"https://jsonkeeper.com/b/GUIW"
+URL_DB = r"https://jsonkeeper.com/b/JTQY"
 
 """
 Функция для загрузки словаря из json файла, удаление дублей и и рандомный выбор слова для игры
 """
-def load_random_word(json_file):
-    user_word = get(json_file).json()
 
-    for item in user_word:
-        item["words"] = list(set(item["words"]))
 
-    user_word_item = choice(user_word)
+def load_random_word(url: str = URL_DB):
+    user_db = get(url).json()
+
+    for item in user_db:
+        item["subwords"] = list(set(item["subwords"]))
+
+    user_db_item = choice(user_db)
     word_game = classes.BasicWord(
-        word_original = user_word_item["word"],
-        word_list = user_word_item["words"]
+        raw_word=user_db_item["word"],
+        lst_word=user_db_item["subwords"]
     )
     return word_game
